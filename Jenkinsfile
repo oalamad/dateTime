@@ -22,6 +22,36 @@ pipeline {
                 archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
             }
         }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Set your Docker image name and tag
+                    def dockerImage = 'oalamad/awsdatetime'
+                    def dockerTag = 'latest'
+                    def jarFile = sh(script: 'ls -d $WORKSPACE/**/target/*.jar', returnStatus: true).trim()
+        
+                    // Build the Docker image
+                    sh "docker build -t $dockerImage:$dockerTag -f Dockerfile --build-arg JAR_FILE=$jarFile ."
+                }
+            }
+        }
+
+        
+        stage('Deploy to Kubernetes') {
+            steps {
+               script {
+                   // Set the Kubernetes namespace
+                   def namespace = 'date-time'
+                   
+                   // Define the deployment YAML file path
+                   def deploymentYaml = './deployment.yaml'
+                   
+                   // Apply the deployment to the Kubernetes cluster
+                   sh "kubectl apply -n $namespace -f $deploymentYaml"
+               }
+            }
+        }
     }
 
     post {

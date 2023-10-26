@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: date-time
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: datetime
+  template:
+    metadata:
+      labels:
+        app: datetime
+    spec:
+      containers:
+      - name: datetime-container
+        image: oalamad/awsdatetime:latest
+        ports:
+        - containerPort: 8080
