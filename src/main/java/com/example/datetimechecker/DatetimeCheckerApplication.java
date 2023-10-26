@@ -16,7 +16,7 @@ public class DatetimeCheckerApplication {
 
         while (System.currentTimeMillis() < endTimeMillis) {
             LocalDateTime currentDateTime = LocalDateTime.now();
-            System.out.println("Current date and time: " + currentDateTime);
+            System.out.println("Current date and time: " + currentDateTime + "The end of DevOps Month");
 
             try {
                 Thread.sleep(1000); // Sleep for 1 second
