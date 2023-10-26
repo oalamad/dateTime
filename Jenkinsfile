@@ -26,7 +26,7 @@ pipeline {
 
     post {
         success {
-            // Add post-build actions here (e.g., deployment)
+            // Add post-build actions here (e.g., deployment) test
             sh 'echo "build succeeded"'
         }
     }
