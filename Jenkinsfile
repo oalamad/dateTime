@@ -48,7 +48,7 @@ pipeline {
                    
                    // Define the deployment YAML file path
                    def deploymentYaml = './deployment.yaml'
-                   
+                   sh "pwd && ls"
                    // Apply the deployment to the Kubernetes cluster
                    sh "kubectl apply -n $namespace -f $deploymentYaml"
                }
