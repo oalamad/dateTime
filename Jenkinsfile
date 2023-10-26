@@ -34,6 +34,7 @@ pipeline {
                     echo "Jar File: ${jarFile}"
                     // Build the Docker image
                     sh "docker build -t $dockerImage:$dockerTag --build-arg JAR_FILE=$jarFile ."
+                    sh "docker push $dockerImage:$dockerTag"
                 }
             }
         }
