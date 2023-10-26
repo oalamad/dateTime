@@ -29,7 +29,7 @@ pipeline {
                     // Set your Docker image name and tag
                     def dockerImage = 'oalamad/awsdatetime'
                     def dockerTag = 'latest'
-                    def jarFile = sh(script: 'ls -d $WORKSPACE/**/target/*.jar', returnStatus: true).trim()
+                    def jarFile = sh(script: 'ls -d $WORKSPACE/target/*.jar', returnStatus: true).trim()
         
                     // Build the Docker image
                     sh "docker build -t $dockerImage:$dockerTag -f Dockerfile --build-arg JAR_FILE=$jarFile ."
@@ -37,7 +37,7 @@ pipeline {
             }
         }
 
-        
+
         stage('Deploy to Kubernetes') {
             steps {
                script {
