@@ -29,6 +29,7 @@ pipeline {
                     // Set your Docker image name and tag
                     def dockerImage = 'oalamad/awsdatetime'
                     def dockerTag = 'latest'
+                    sh 'echo $WORKSPACE'
                     def jarFile = sh(script: 'ls -d $WORKSPACE/target/*.jar', returnStatus: true).trim()
                     sh 'echo here'
                     // Build the Docker image
